@@ -51,6 +51,7 @@ def S3Exist(InputVideoBucket, InputVideoKey):
         #print('key not found ...')
         return ('False')
 
+
 response = S3Exist('inputvideobucket', 'test.mp4')
 if response != 'False':
   print('Key exists, continue ...')
