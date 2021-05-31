@@ -20,5 +20,8 @@ def s3CreateBuckets(region):
     print(InputVideoBucket)
     return InputVideoBucket, OutputDataBucket
     
-newbuckets = s3CreateBuckets('us-east-2')
-print ('newbuckets')
+try: 
+    newbuckets = s3CreateBuckets('us-east-2')
+except ClientError as ex:
+    print('bucket already exists')
+print (newbuckets)
