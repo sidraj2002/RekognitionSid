@@ -9,8 +9,11 @@ s3 = boto3.client('s3')
 s3inputbucket = 'inputvideobucket'
 sourcefile = 'test.mp4'
 sourceoutputfile = 'source.mp4'
-timestamp = 20933
+timestamp = 0
 framerate = 15
+labelidentifier = 'Human'
+labelconfidence = 95
+jsonsource = 'data.json'
 
 def S3Exist(InputVideoBucket, InputVideoKey):
     s3 = boto3.client('s3')
@@ -21,22 +24,38 @@ def S3Exist(InputVideoBucket, InputVideoKey):
         #print('key not found ...')
         return ('False')
 
-def CvFrameProcessor(SourceVideoFile, FrameTimeStamp, FrameRate):
+def CvFrameProcessor(SourceVideoFile, FrameTimeStamp, FrameRate, OutputFrameName):
     VidCapture = cv2.VideoCapture(SourceVideoFile)
     length = int(VidCapture.get(cv2.CAP_PROP_FRAME_COUNT))
     print("length of the input video is:", length, "seconds")
     framenumber = FrameTimeStamp*0.0001*FrameRate
     VidCapture.set(1, framenumber) #Based on total length calculated above in seconds and Framerate, calculate which frame to extract
     ret, frame = VidCapture.read()
-    cv2.imwrite("Frame.jpeg", frame)
-        
+    cv2.imwrite(OutputFrameName, frame)
+
+def RekognitionOutputParser (JsonInput, ConfidenceScore, LabelIdentifier):
+    with open(jsonsource) as f:
+        data = json.load(f)
+    VideoMetadata = data['VideoMetadata']
+    for LabelData in data['Labels']:
+        if (LabelData['Label']['Name'] == LabelIdentifier) and (LabelData['Label']['Confidence'] > ConfidenceScore):
+            print(LabelData)
+    return LabelData, VideoMetadata 
 
 response = S3Exist(s3inputbucket, sourcefile)
 if response != 'False':
   print('Key exists, continue ...\n')
   try:
         s3.download_file(s3inputbucket, sourcefile, sourceoutputfile) #Download Video From S3
-        CvFrameProcessor(sourceoutputfile, timestamp, framerate) #Run Frame extracter on locally downloaded file
+    #Get specific LabelData which is data of interest basd on constraints provided 
+        LabelData = RekognitionOutputParser(jsonsource, labelconfidence, labelidentifier)
+        
+        timestamp = LabelData[0]['Timestamp']
+        framerate = LabelData[1]['FrameRate']
+        outputframename = ( str(timestamp) + ".jpeg")
+        
+        CvFrameProcessor(sourceoutputfile, timestamp, framerate, outputframename) #Run Frame extracter on locally downloaded file
+        
   except OSError:
         print('File already exists ... Removing exisitng file \n')
         os.remove('~/environment/RekognitionSid/HumanVideoDetect/source.mp4')
