@@ -17,7 +17,7 @@ def LambdaStartLabelDetection(InputVideoBucket, InputVideoKey, SNSTopicArn):
             'Name': InputVideoKey
         }
     },
-    MinConfidence=80,
+    MinConfidence=91,
     NotificationChannel={
         'SNSTopicArn': SNSTopicArn,
         'RoleArn': 'arn:aws:iam::256069468632:role/RekognitionServiceRole'
@@ -25,22 +25,22 @@ def LambdaStartLabelDetection(InputVideoBucket, InputVideoKey, SNSTopicArn):
     JobTag='TestJob01')
     return response
     
-
-def JobSuccessChecker(SQSEndpoint, RekognitionJobID):
-    client = boto3.client('sqs')
+    
+def JobSuccessChecker2(RekognitionJobID):
+    client = boto3.client('rekognition')
     JobSucess = False
-    while JobSucess == False:
-     response = client.receive_message(
-     QueueUrl=SQSEndpoint,
-     AttributeNames=['All'],
-     MessageAttributeNames=[ 'All',],
-     MaxNumberOfMessages=10,
-     )
-     print(response)
-     time.sleep(5)
+    while not JobSucess :
+     response = client.get_label_detection(
+      JobId=RekognitionJobID,
+      MaxResults=123
+      )
+     print(response['JobStatus'])
+     if response['JobStatus'] == "SUCCEEDED":
+        JobSucess = True
+        return response
+     else:
+        time.sleep(5)
      continue
- 
-     return True
     
 def S3Exist(InputVideoBucket, InputVideoKey):
     s3 = boto3.client('s3')
@@ -58,7 +58,9 @@ if response != 'False':
   RekognitionStartResponse = LambdaStartLabelDetection('inputvideobucket', 'test.mp4', 'arn:aws:sns:us-east-2:256069468632:RekognitionTest01')
   print(RekognitionStartResponse)
   
-  JobStatusCheck = JobSuccessChecker('https://sqs.us-east-2.amazonaws.com/256069468632/RekognitionQueue01', RekognitionStartResponse['JobId'])
+  JobStatusCheck = JobSuccessChecker2( RekognitionStartResponse['JobId'])
+  with open('data.json', 'w', encoding='utf-8') as f:
+    json.dump(JobStatusCheck, f, ensure_ascii=False, indent=4)
   
 else:
   print('Failed to locate input key in S3 ... ')
@@ -67,4 +69,20 @@ else:
 # Rekognition Service role: arn:aws:iam::256069468632:role/RekognitionServiceRole
 # SNS Topic Arn: arn:aws:sns:us-east-2:256069468632:RekognitionTest01
 
-    
+# Version 1 - Using SQS:
+
+#def JobSuccessChecker(SQSEndpoint, RekognitionJobID):
+#    client = boto3.client('sqs')
+#    JobSucess = False
+#    while JobSucess == False:
+#     response = client.receive_message(
+#     QueueUrl=SQSEndpoint,
+#     AttributeNames=['All'],
+#     MessageAttributeNames=[ 'All',],
+#     MaxNumberOfMessages=10,
+#     )
+#     print(response)
+#     time.sleep(5)
+#     continue
+#      return True
+     

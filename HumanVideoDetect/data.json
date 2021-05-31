@@ -1,0 +1,1433 @@
+{
+    "JobStatus": "SUCCEEDED",
+    "VideoMetadata": {
+        "Codec": "h264",
+        "DurationMillis": 125933,
+        "Format": "QuickTime / MOV",
+        "FrameRate": 14.999922752380371,
+        "FrameHeight": 240,
+        "FrameWidth": 320
+    },
+    "NextToken": "z8k/twiFxHdviBitxiPQngLTMa+EsR/4GYZZLWJSu0T4LatUHOtZku7gUIOmdNo36TmWGAoKbFo=",
+    "Labels": [
+        {
+            "Timestamp": 0,
+            "Label": {
+                "Name": "Animal",
+                "Confidence": 92.44418334960938,
+                "Instances": [],
+                "Parents": []
+            }
+        },
+        {
+            "Timestamp": 466,
+            "Label": {
+                "Name": "Animal",
+                "Confidence": 94.48164367675781,
+                "Instances": [],
+                "Parents": []
+            }
+        },
+        {
+            "Timestamp": 933,
+            "Label": {
+                "Name": "Animal",
+                "Confidence": 91.52460479736328,
+                "Instances": [],
+                "Parents": []
+            }
+        },
+        {
+            "Timestamp": 4466,
+            "Label": {
+                "Name": "Animal",
+                "Confidence": 91.77420043945312,
+                "Instances": [],
+                "Parents": []
+            }
+        },
+        {
+            "Timestamp": 4933,
+            "Label": {
+                "Name": "Animal",
+                "Confidence": 95.19853973388672,
+                "Instances": [],
+                "Parents": []
+            }
+        },
+        {
+            "Timestamp": 4933,
+            "Label": {
+                "Name": "Zoo",
+                "Confidence": 95.19853973388672,
+                "Instances": [],
+                "Parents": [
+                    {
+                        "Name": "Animal"
+                    }
+                ]
+            }
+        },
+        {
+            "Timestamp": 5466,
+            "Label": {
+                "Name": "Animal",
+                "Confidence": 93.79181671142578,
+                "Instances": [],
+                "Parents": []
+            }
+        },
+        {
+            "Timestamp": 5466,
+            "Label": {
+                "Name": "Zoo",
+                "Confidence": 93.79181671142578,
+                "Instances": [],
+                "Parents": [
+                    {
+                        "Name": "Animal"
+                    }
+                ]
+            }
+        },
+        {
+            "Timestamp": 5933,
+            "Label": {
+                "Name": "Animal",
+                "Confidence": 92.84952545166016,
+                "Instances": [],
+                "Parents": []
+            }
+        },
+        {
+            "Timestamp": 5933,
+            "Label": {
+                "Name": "Zoo",
+                "Confidence": 92.84952545166016,
+                "Instances": [],
+                "Parents": [
+                    {
+                        "Name": "Animal"
+                    }
+                ]
+            }
+        },
+        {
+            "Timestamp": 6466,
+            "Label": {
+                "Name": "Animal",
+                "Confidence": 91.81653594970703,
+                "Instances": [],
+                "Parents": []
+            }
+        },
+        {
+            "Timestamp": 6933,
+            "Label": {
+                "Name": "Animal",
+                "Confidence": 91.0701675415039,
+                "Instances": [],
+                "Parents": []
+            }
+        },
+        {
+            "Timestamp": 7466,
+            "Label": {
+                "Name": "Animal",
+                "Confidence": 93.40460968017578,
+                "Instances": [],
+                "Parents": []
+            }
+        },
+        {
+            "Timestamp": 13466,
+            "Label": {
+                "Name": "Animal",
+                "Confidence": 93.1303482055664,
+                "Instances": [],
+                "Parents": []
+            }
+        },
+        {
+            "Timestamp": 13466,
+            "Label": {
+                "Name": "Mammal",
+                "Confidence": 93.1303482055664,
+                "Instances": [],
+                "Parents": [
+                    {
+                        "Name": "Animal"
+                    }
+                ]
+            }
+        },
+        {
+            "Timestamp": 13933,
+            "Label": {
+                "Name": "Animal",
+                "Confidence": 92.07917022705078,
+                "Instances": [],
+                "Parents": []
+            }
+        },
+        {
+            "Timestamp": 13933,
+            "Label": {
+                "Name": "Mammal",
+                "Confidence": 92.07917022705078,
+                "Instances": [],
+                "Parents": [
+                    {
+                        "Name": "Animal"
+                    }
+                ]
+            }
+        },
+        {
+            "Timestamp": 14466,
+            "Label": {
+                "Name": "Animal",
+                "Confidence": 92.8891830444336,
+                "Instances": [],
+                "Parents": []
+            }
+        },
+        {
+            "Timestamp": 14466,
+            "Label": {
+                "Name": "Mammal",
+                "Confidence": 92.8891830444336,
+                "Instances": [],
+                "Parents": [
+                    {
+                        "Name": "Animal"
+                    }
+                ]
+            }
+        },
+        {
+            "Timestamp": 14933,
+            "Label": {
+                "Name": "Animal",
+                "Confidence": 94.18798828125,
+                "Instances": [],
+                "Parents": []
+            }
+        },
+        {
+            "Timestamp": 14933,
+            "Label": {
+                "Name": "Mammal",
+                "Confidence": 94.18798828125,
+                "Instances": [],
+                "Parents": [
+                    {
+                        "Name": "Animal"
+                    }
+                ]
+            }
+        },
+        {
+            "Timestamp": 15466,
+            "Label": {
+                "Name": "Animal",
+                "Confidence": 93.5152359008789,
+                "Instances": [],
+                "Parents": []
+            }
+        },
+        {
+            "Timestamp": 15466,
+            "Label": {
+                "Name": "Mammal",
+                "Confidence": 93.5152359008789,
+                "Instances": [],
+                "Parents": [
+                    {
+                        "Name": "Animal"
+                    }
+                ]
+            }
+        },
+        {
+            "Timestamp": 20933,
+            "Label": {
+                "Name": "World Of Warcraft",
+                "Confidence": 93.61215209960938,
+                "Instances": [],
+                "Parents": []
+            }
+        },
+        {
+            "Timestamp": 24466,
+            "Label": {
+                "Name": "Human",
+                "Confidence": 94.839111328125,
+                "Instances": [],
+                "Parents": []
+            }
+        },
+        {
+            "Timestamp": 24466,
+            "Label": {
+                "Name": "Person",
+                "Confidence": 94.839111328125,
+                "Instances": [
+                    {
+                        "BoundingBox": {
+                            "Width": 0.5572234392166138,
+                            "Height": 0.7214730381965637,
+                            "Left": 0.007919097319245338,
+                            "Top": 0.1362154334783554
+                        },
+                        "Confidence": 94.70184326171875
+                    }
+                ],
+                "Parents": []
+            }
+        },
+        {
+            "Timestamp": 24933,
+            "Label": {
+                "Name": "Human",
+                "Confidence": 95.80253601074219,
+                "Instances": [],
+                "Parents": []
+            }
+        },
+        {
+            "Timestamp": 24933,
+            "Label": {
+                "Name": "Person",
+                "Confidence": 95.80253601074219,
+                "Instances": [
+                    {
+                        "BoundingBox": {
+                            "Width": 0.5962749719619751,
+                            "Height": 0.7457716464996338,
+                            "Left": 0.006361341569572687,
+                            "Top": 0.1295100897550583
+                        },
+                        "Confidence": 96.05524444580078
+                    }
+                ],
+                "Parents": []
+            }
+        },
+        {
+            "Timestamp": 25933,
+            "Label": {
+                "Name": "Plant",
+                "Confidence": 95.2048568725586,
+                "Instances": [],
+                "Parents": []
+            }
+        },
+        {
+            "Timestamp": 26466,
+            "Label": {
+                "Name": "Plant",
+                "Confidence": 93.98484802246094,
+                "Instances": [],
+                "Parents": []
+            }
+        },
+        {
+            "Timestamp": 31466,
+            "Label": {
+                "Name": "Animal",
+                "Confidence": 96.43562316894531,
+                "Instances": [],
+                "Parents": []
+            }
+        },
+        {
+            "Timestamp": 31466,
+            "Label": {
+                "Name": "Mammal",
+                "Confidence": 95.88026428222656,
+                "Instances": [],
+                "Parents": [
+                    {
+                        "Name": "Animal"
+                    }
+                ]
+            }
+        },
+        {
+            "Timestamp": 31933,
+            "Label": {
+                "Name": "Animal",
+                "Confidence": 95.24547576904297,
+                "Instances": [],
+                "Parents": []
+            }
+        },
+        {
+            "Timestamp": 31933,
+            "Label": {
+                "Name": "Mammal",
+                "Confidence": 94.94766235351562,
+                "Instances": [],
+                "Parents": [
+                    {
+                        "Name": "Animal"
+                    }
+                ]
+            }
+        },
+        {
+            "Timestamp": 33466,
+            "Label": {
+                "Name": "Animal",
+                "Confidence": 91.89618682861328,
+                "Instances": [],
+                "Parents": []
+            }
+        },
+        {
+            "Timestamp": 33466,
+            "Label": {
+                "Name": "Mammal",
+                "Confidence": 91.89618682861328,
+                "Instances": [],
+                "Parents": [
+                    {
+                        "Name": "Animal"
+                    }
+                ]
+            }
+        },
+        {
+            "Timestamp": 33933,
+            "Label": {
+                "Name": "Animal",
+                "Confidence": 93.26981353759766,
+                "Instances": [],
+                "Parents": []
+            }
+        },
+        {
+            "Timestamp": 33933,
+            "Label": {
+                "Name": "Mammal",
+                "Confidence": 93.26981353759766,
+                "Instances": [],
+                "Parents": [
+                    {
+                        "Name": "Animal"
+                    }
+                ]
+            }
+        },
+        {
+            "Timestamp": 34466,
+            "Label": {
+                "Name": "Animal",
+                "Confidence": 91.4471206665039,
+                "Instances": [],
+                "Parents": []
+            }
+        },
+        {
+            "Timestamp": 34466,
+            "Label": {
+                "Name": "Mammal",
+                "Confidence": 91.4471206665039,
+                "Instances": [],
+                "Parents": [
+                    {
+                        "Name": "Animal"
+                    }
+                ]
+            }
+        },
+        {
+            "Timestamp": 39800,
+            "Label": {
+                "Name": "Animal",
+                "Confidence": 92.86115264892578,
+                "Instances": [],
+                "Parents": []
+            }
+        },
+        {
+            "Timestamp": 39800,
+            "Label": {
+                "Name": "Mammal",
+                "Confidence": 92.86115264892578,
+                "Instances": [],
+                "Parents": [
+                    {
+                        "Name": "Animal"
+                    }
+                ]
+            }
+        },
+        {
+            "Timestamp": 40333,
+            "Label": {
+                "Name": "Animal",
+                "Confidence": 92.6503677368164,
+                "Instances": [],
+                "Parents": []
+            }
+        },
+        {
+            "Timestamp": 40333,
+            "Label": {
+                "Name": "Mammal",
+                "Confidence": 92.6503677368164,
+                "Instances": [],
+                "Parents": [
+                    {
+                        "Name": "Animal"
+                    }
+                ]
+            }
+        },
+        {
+            "Timestamp": 40800,
+            "Label": {
+                "Name": "Animal",
+                "Confidence": 92.18065643310547,
+                "Instances": [],
+                "Parents": []
+            }
+        },
+        {
+            "Timestamp": 40800,
+            "Label": {
+                "Name": "Mammal",
+                "Confidence": 92.18065643310547,
+                "Instances": [],
+                "Parents": [
+                    {
+                        "Name": "Animal"
+                    }
+                ]
+            }
+        },
+        {
+            "Timestamp": 42333,
+            "Label": {
+                "Name": "Plant",
+                "Confidence": 91.50613403320312,
+                "Instances": [],
+                "Parents": []
+            }
+        },
+        {
+            "Timestamp": 42800,
+            "Label": {
+                "Name": "Plant",
+                "Confidence": 97.38252258300781,
+                "Instances": [],
+                "Parents": []
+            }
+        },
+        {
+            "Timestamp": 43333,
+            "Label": {
+                "Name": "Plant",
+                "Confidence": 93.51321411132812,
+                "Instances": [],
+                "Parents": []
+            }
+        },
+        {
+            "Timestamp": 44333,
+            "Label": {
+                "Name": "Nature",
+                "Confidence": 91.6231460571289,
+                "Instances": [],
+                "Parents": []
+            }
+        },
+        {
+            "Timestamp": 44333,
+            "Label": {
+                "Name": "Outdoors",
+                "Confidence": 92.37175750732422,
+                "Instances": [],
+                "Parents": []
+            }
+        },
+        {
+            "Timestamp": 44800,
+            "Label": {
+                "Name": "Nature",
+                "Confidence": 92.53919219970703,
+                "Instances": [],
+                "Parents": []
+            }
+        },
+        {
+            "Timestamp": 44800,
+            "Label": {
+                "Name": "Outdoors",
+                "Confidence": 93.08602142333984,
+                "Instances": [],
+                "Parents": []
+            }
+        },
+        {
+            "Timestamp": 49333,
+            "Label": {
+                "Name": "Nature",
+                "Confidence": 93.48631286621094,
+                "Instances": [],
+                "Parents": []
+            }
+        },
+        {
+            "Timestamp": 49333,
+            "Label": {
+                "Name": "Outdoors",
+                "Confidence": 93.23371887207031,
+                "Instances": [],
+                "Parents": []
+            }
+        },
+        {
+            "Timestamp": 49800,
+            "Label": {
+                "Name": "Landscape",
+                "Confidence": 93.33686828613281,
+                "Instances": [],
+                "Parents": [
+                    {
+                        "Name": "Outdoors"
+                    },
+                    {
+                        "Name": "Nature"
+                    }
+                ]
+            }
+        },
+        {
+            "Timestamp": 49800,
+            "Label": {
+                "Name": "Nature",
+                "Confidence": 98.54964447021484,
+                "Instances": [],
+                "Parents": []
+            }
+        },
+        {
+            "Timestamp": 49800,
+            "Label": {
+                "Name": "Outdoors",
+                "Confidence": 98.34799194335938,
+                "Instances": [],
+                "Parents": []
+            }
+        },
+        {
+            "Timestamp": 49800,
+            "Label": {
+                "Name": "Scenery",
+                "Confidence": 93.83289337158203,
+                "Instances": [],
+                "Parents": [
+                    {
+                        "Name": "Outdoors"
+                    },
+                    {
+                        "Name": "Nature"
+                    }
+                ]
+            }
+        },
+        {
+            "Timestamp": 50200,
+            "Label": {
+                "Name": "Landscape",
+                "Confidence": 99.86443328857422,
+                "Instances": [],
+                "Parents": [
+                    {
+                        "Name": "Outdoors"
+                    },
+                    {
+                        "Name": "Nature"
+                    }
+                ]
+            }
+        },
+        {
+            "Timestamp": 50200,
+            "Label": {
+                "Name": "Nature",
+                "Confidence": 99.86443328857422,
+                "Instances": [],
+                "Parents": []
+            }
+        },
+        {
+            "Timestamp": 50200,
+            "Label": {
+                "Name": "Outdoors",
+                "Confidence": 99.86443328857422,
+                "Instances": [],
+                "Parents": []
+            }
+        },
+        {
+            "Timestamp": 50200,
+            "Label": {
+                "Name": "Panoramic",
+                "Confidence": 99.86443328857422,
+                "Instances": [],
+                "Parents": [
+                    {
+                        "Name": "Landscape"
+                    },
+                    {
+                        "Name": "Scenery"
+                    },
+                    {
+                        "Name": "Outdoors"
+                    },
+                    {
+                        "Name": "Nature"
+                    }
+                ]
+            }
+        },
+        {
+            "Timestamp": 50200,
+            "Label": {
+                "Name": "Scenery",
+                "Confidence": 99.86443328857422,
+                "Instances": [],
+                "Parents": [
+                    {
+                        "Name": "Outdoors"
+                    },
+                    {
+                        "Name": "Nature"
+                    }
+                ]
+            }
+        },
+        {
+            "Timestamp": 50666,
+            "Label": {
+                "Name": "Landscape",
+                "Confidence": 99.63465881347656,
+                "Instances": [],
+                "Parents": [
+                    {
+                        "Name": "Outdoors"
+                    },
+                    {
+                        "Name": "Nature"
+                    }
+                ]
+            }
+        },
+        {
+            "Timestamp": 50666,
+            "Label": {
+                "Name": "Nature",
+                "Confidence": 99.63465881347656,
+                "Instances": [],
+                "Parents": []
+            }
+        },
+        {
+            "Timestamp": 50666,
+            "Label": {
+                "Name": "Outdoors",
+                "Confidence": 99.63465881347656,
+                "Instances": [],
+                "Parents": []
+            }
+        },
+        {
+            "Timestamp": 50666,
+            "Label": {
+                "Name": "Panoramic",
+                "Confidence": 99.63465881347656,
+                "Instances": [],
+                "Parents": [
+                    {
+                        "Name": "Landscape"
+                    },
+                    {
+                        "Name": "Scenery"
+                    },
+                    {
+                        "Name": "Outdoors"
+                    },
+                    {
+                        "Name": "Nature"
+                    }
+                ]
+            }
+        },
+        {
+            "Timestamp": 50666,
+            "Label": {
+                "Name": "Scenery",
+                "Confidence": 99.63465881347656,
+                "Instances": [],
+                "Parents": [
+                    {
+                        "Name": "Outdoors"
+                    },
+                    {
+                        "Name": "Nature"
+                    }
+                ]
+            }
+        },
+        {
+            "Timestamp": 51200,
+            "Label": {
+                "Name": "Landscape",
+                "Confidence": 98.88153839111328,
+                "Instances": [],
+                "Parents": [
+                    {
+                        "Name": "Outdoors"
+                    },
+                    {
+                        "Name": "Nature"
+                    }
+                ]
+            }
+        },
+        {
+            "Timestamp": 51200,
+            "Label": {
+                "Name": "Nature",
+                "Confidence": 99.0771255493164,
+                "Instances": [],
+                "Parents": []
+            }
+        },
+        {
+            "Timestamp": 51200,
+            "Label": {
+                "Name": "Outdoors",
+                "Confidence": 98.97637939453125,
+                "Instances": [],
+                "Parents": []
+            }
+        },
+        {
+            "Timestamp": 51200,
+            "Label": {
+                "Name": "Panoramic",
+                "Confidence": 98.79539489746094,
+                "Instances": [],
+                "Parents": [
+                    {
+                        "Name": "Landscape"
+                    },
+                    {
+                        "Name": "Scenery"
+                    },
+                    {
+                        "Name": "Outdoors"
+                    },
+                    {
+                        "Name": "Nature"
+                    }
+                ]
+            }
+        },
+        {
+            "Timestamp": 51200,
+            "Label": {
+                "Name": "Scenery",
+                "Confidence": 98.79539489746094,
+                "Instances": [],
+                "Parents": [
+                    {
+                        "Name": "Outdoors"
+                    },
+                    {
+                        "Name": "Nature"
+                    }
+                ]
+            }
+        },
+        {
+            "Timestamp": 52666,
+            "Label": {
+                "Name": "Human",
+                "Confidence": 93.63239288330078,
+                "Instances": [],
+                "Parents": []
+            }
+        },
+        {
+            "Timestamp": 52666,
+            "Label": {
+                "Name": "Person",
+                "Confidence": 93.63239288330078,
+                "Instances": [
+                    {
+                        "BoundingBox": {
+                            "Width": 0.4889358878135681,
+                            "Height": 0.7195699214935303,
+                            "Left": 0.011763811111450195,
+                            "Top": 0.15013304352760315
+                        },
+                        "Confidence": 93.47107696533203
+                    }
+                ],
+                "Parents": []
+            }
+        },
+        {
+            "Timestamp": 53200,
+            "Label": {
+                "Name": "Human",
+                "Confidence": 93.41413879394531,
+                "Instances": [],
+                "Parents": []
+            }
+        },
+        {
+            "Timestamp": 53200,
+            "Label": {
+                "Name": "Person",
+                "Confidence": 93.41413879394531,
+                "Instances": [
+                    {
+                        "BoundingBox": {
+                            "Width": 0.5229974985122681,
+                            "Height": 0.7208331823348999,
+                            "Left": 0.007550239562988281,
+                            "Top": 0.15076112747192383
+                        },
+                        "Confidence": 93.2305679321289
+                    }
+                ],
+                "Parents": []
+            }
+        },
+        {
+            "Timestamp": 58666,
+            "Label": {
+                "Name": "Animal",
+                "Confidence": 91.541259765625,
+                "Instances": [],
+                "Parents": []
+            }
+        },
+        {
+            "Timestamp": 60666,
+            "Label": {
+                "Name": "Animal",
+                "Confidence": 93.74066162109375,
+                "Instances": [],
+                "Parents": []
+            }
+        },
+        {
+            "Timestamp": 60666,
+            "Label": {
+                "Name": "Mammal",
+                "Confidence": 93.74066162109375,
+                "Instances": [],
+                "Parents": [
+                    {
+                        "Name": "Animal"
+                    }
+                ]
+            }
+        },
+        {
+            "Timestamp": 61200,
+            "Label": {
+                "Name": "Animal",
+                "Confidence": 94.05396270751953,
+                "Instances": [],
+                "Parents": []
+            }
+        },
+        {
+            "Timestamp": 61200,
+            "Label": {
+                "Name": "Mammal",
+                "Confidence": 93.97665405273438,
+                "Instances": [],
+                "Parents": [
+                    {
+                        "Name": "Animal"
+                    }
+                ]
+            }
+        },
+        {
+            "Timestamp": 61666,
+            "Label": {
+                "Name": "Animal",
+                "Confidence": 92.82377624511719,
+                "Instances": [],
+                "Parents": []
+            }
+        },
+        {
+            "Timestamp": 61666,
+            "Label": {
+                "Name": "Mammal",
+                "Confidence": 92.5160903930664,
+                "Instances": [],
+                "Parents": [
+                    {
+                        "Name": "Animal"
+                    }
+                ]
+            }
+        },
+        {
+            "Timestamp": 62200,
+            "Label": {
+                "Name": "Animal",
+                "Confidence": 92.47760772705078,
+                "Instances": [],
+                "Parents": []
+            }
+        },
+        {
+            "Timestamp": 62200,
+            "Label": {
+                "Name": "Human",
+                "Confidence": 91.63127136230469,
+                "Instances": [],
+                "Parents": []
+            }
+        },
+        {
+            "Timestamp": 62200,
+            "Label": {
+                "Name": "Mammal",
+                "Confidence": 92.18550109863281,
+                "Instances": [],
+                "Parents": [
+                    {
+                        "Name": "Animal"
+                    }
+                ]
+            }
+        },
+        {
+            "Timestamp": 62200,
+            "Label": {
+                "Name": "Person",
+                "Confidence": 91.63127136230469,
+                "Instances": [
+                    {
+                        "BoundingBox": {
+                            "Width": 0.6227296590805054,
+                            "Height": 0.6099799871444702,
+                            "Left": 0.20767180621623993,
+                            "Top": 0.26347970962524414
+                        },
+                        "Confidence": 94.88298034667969
+                    }
+                ],
+                "Parents": []
+            }
+        },
+        {
+            "Timestamp": 62666,
+            "Label": {
+                "Name": "Human",
+                "Confidence": 91.2050552368164,
+                "Instances": [],
+                "Parents": []
+            }
+        },
+        {
+            "Timestamp": 62666,
+            "Label": {
+                "Name": "Person",
+                "Confidence": 91.2050552368164,
+                "Instances": [
+                    {
+                        "BoundingBox": {
+                            "Width": 0.6406189799308777,
+                            "Height": 0.6104559302330017,
+                            "Left": 0.21244151890277863,
+                            "Top": 0.2627362608909607
+                        },
+                        "Confidence": 91.16226959228516
+                    }
+                ],
+                "Parents": []
+            }
+        },
+        {
+            "Timestamp": 63200,
+            "Label": {
+                "Name": "Animal",
+                "Confidence": 91.77208709716797,
+                "Instances": [],
+                "Parents": []
+            }
+        },
+        {
+            "Timestamp": 63200,
+            "Label": {
+                "Name": "Mammal",
+                "Confidence": 91.77208709716797,
+                "Instances": [],
+                "Parents": [
+                    {
+                        "Name": "Animal"
+                    }
+                ]
+            }
+        },
+        {
+            "Timestamp": 63666,
+            "Label": {
+                "Name": "Animal",
+                "Confidence": 93.32984161376953,
+                "Instances": [],
+                "Parents": []
+            }
+        },
+        {
+            "Timestamp": 63666,
+            "Label": {
+                "Name": "Mammal",
+                "Confidence": 93.32984161376953,
+                "Instances": [],
+                "Parents": [
+                    {
+                        "Name": "Animal"
+                    }
+                ]
+            }
+        },
+        {
+            "Timestamp": 64200,
+            "Label": {
+                "Name": "Animal",
+                "Confidence": 94.25653839111328,
+                "Instances": [],
+                "Parents": []
+            }
+        },
+        {
+            "Timestamp": 64200,
+            "Label": {
+                "Name": "Mammal",
+                "Confidence": 94.25653839111328,
+                "Instances": [],
+                "Parents": [
+                    {
+                        "Name": "Animal"
+                    }
+                ]
+            }
+        },
+        {
+            "Timestamp": 65133,
+            "Label": {
+                "Name": "Grass",
+                "Confidence": 99.51640319824219,
+                "Instances": [],
+                "Parents": [
+                    {
+                        "Name": "Plant"
+                    }
+                ]
+            }
+        },
+        {
+            "Timestamp": 65133,
+            "Label": {
+                "Name": "Plant",
+                "Confidence": 99.51640319824219,
+                "Instances": [],
+                "Parents": []
+            }
+        },
+        {
+            "Timestamp": 65666,
+            "Label": {
+                "Name": "Grass",
+                "Confidence": 98.96035766601562,
+                "Instances": [],
+                "Parents": [
+                    {
+                        "Name": "Plant"
+                    }
+                ]
+            }
+        },
+        {
+            "Timestamp": 65666,
+            "Label": {
+                "Name": "Plant",
+                "Confidence": 98.96035766601562,
+                "Instances": [],
+                "Parents": []
+            }
+        },
+        {
+            "Timestamp": 65666,
+            "Label": {
+                "Name": "Tree",
+                "Confidence": 92.8306884765625,
+                "Instances": [],
+                "Parents": [
+                    {
+                        "Name": "Plant"
+                    }
+                ]
+            }
+        },
+        {
+            "Timestamp": 66133,
+            "Label": {
+                "Name": "Grass",
+                "Confidence": 99.2175521850586,
+                "Instances": [],
+                "Parents": [
+                    {
+                        "Name": "Plant"
+                    }
+                ]
+            }
+        },
+        {
+            "Timestamp": 66133,
+            "Label": {
+                "Name": "Plant",
+                "Confidence": 99.2175521850586,
+                "Instances": [],
+                "Parents": []
+            }
+        },
+        {
+            "Timestamp": 66666,
+            "Label": {
+                "Name": "Grass",
+                "Confidence": 98.29423522949219,
+                "Instances": [],
+                "Parents": [
+                    {
+                        "Name": "Plant"
+                    }
+                ]
+            }
+        },
+        {
+            "Timestamp": 66666,
+            "Label": {
+                "Name": "Plant",
+                "Confidence": 98.29423522949219,
+                "Instances": [],
+                "Parents": []
+            }
+        },
+        {
+            "Timestamp": 67133,
+            "Label": {
+                "Name": "Grass",
+                "Confidence": 95.9646224975586,
+                "Instances": [],
+                "Parents": [
+                    {
+                        "Name": "Plant"
+                    }
+                ]
+            }
+        },
+        {
+            "Timestamp": 67133,
+            "Label": {
+                "Name": "Plant",
+                "Confidence": 95.9646224975586,
+                "Instances": [],
+                "Parents": []
+            }
+        },
+        {
+            "Timestamp": 67666,
+            "Label": {
+                "Name": "Grass",
+                "Confidence": 96.05123138427734,
+                "Instances": [],
+                "Parents": [
+                    {
+                        "Name": "Plant"
+                    }
+                ]
+            }
+        },
+        {
+            "Timestamp": 67666,
+            "Label": {
+                "Name": "Plant",
+                "Confidence": 96.05123138427734,
+                "Instances": [],
+                "Parents": []
+            }
+        },
+        {
+            "Timestamp": 68133,
+            "Label": {
+                "Name": "Grass",
+                "Confidence": 96.77571868896484,
+                "Instances": [],
+                "Parents": [
+                    {
+                        "Name": "Plant"
+                    }
+                ]
+            }
+        },
+        {
+            "Timestamp": 68133,
+            "Label": {
+                "Name": "Plant",
+                "Confidence": 96.77571868896484,
+                "Instances": [],
+                "Parents": []
+            }
+        },
+        {
+            "Timestamp": 68666,
+            "Label": {
+                "Name": "Grass",
+                "Confidence": 97.50059509277344,
+                "Instances": [],
+                "Parents": [
+                    {
+                        "Name": "Plant"
+                    }
+                ]
+            }
+        },
+        {
+            "Timestamp": 68666,
+            "Label": {
+                "Name": "Plant",
+                "Confidence": 97.50059509277344,
+                "Instances": [],
+                "Parents": []
+            }
+        },
+        {
+            "Timestamp": 69133,
+            "Label": {
+                "Name": "Grass",
+                "Confidence": 96.13520812988281,
+                "Instances": [],
+                "Parents": [
+                    {
+                        "Name": "Plant"
+                    }
+                ]
+            }
+        },
+        {
+            "Timestamp": 69133,
+            "Label": {
+                "Name": "Plant",
+                "Confidence": 96.13520812988281,
+                "Instances": [],
+                "Parents": []
+            }
+        },
+        {
+            "Timestamp": 69666,
+            "Label": {
+                "Name": "Grass",
+                "Confidence": 94.4509048461914,
+                "Instances": [],
+                "Parents": [
+                    {
+                        "Name": "Plant"
+                    }
+                ]
+            }
+        },
+        {
+            "Timestamp": 69666,
+            "Label": {
+                "Name": "Plant",
+                "Confidence": 94.4509048461914,
+                "Instances": [],
+                "Parents": []
+            }
+        },
+        {
+            "Timestamp": 70133,
+            "Label": {
+                "Name": "Plant",
+                "Confidence": 91.59209442138672,
+                "Instances": [],
+                "Parents": []
+            }
+        },
+        {
+            "Timestamp": 78133,
+            "Label": {
+                "Name": "Grass",
+                "Confidence": 93.7646484375,
+                "Instances": [],
+                "Parents": [
+                    {
+                        "Name": "Plant"
+                    }
+                ]
+            }
+        },
+        {
+            "Timestamp": 78133,
+            "Label": {
+                "Name": "Plant",
+                "Confidence": 93.7646484375,
+                "Instances": [],
+                "Parents": []
+            }
+        },
+        {
+            "Timestamp": 78666,
+            "Label": {
+                "Name": "Grass",
+                "Confidence": 95.3389663696289,
+                "Instances": [],
+                "Parents": [
+                    {
+                        "Name": "Plant"
+                    }
+                ]
+            }
+        },
+        {
+            "Timestamp": 78666,
+            "Label": {
+                "Name": "Plant",
+                "Confidence": 95.3389663696289,
+                "Instances": [],
+                "Parents": []
+            }
+        }
+    ],
+    "LabelModelVersion": "2.0",
+    "ResponseMetadata": {
+        "RequestId": "dc84bef2-25b6-45cc-a2c3-92f06c0f8df8",
+        "HTTPStatusCode": 200,
+        "HTTPHeaders": {
+            "content-type": "application/x-amz-json-1.1",
+            "date": "Mon, 31 May 2021 18:54:35 GMT",
+            "x-amzn-requestid": "dc84bef2-25b6-45cc-a2c3-92f06c0f8df8",
+            "content-length": "15219",
+            "connection": "keep-alive"
+        },
+        "RetryAttempts": 0
+    }
+}
