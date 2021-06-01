@@ -60,18 +60,33 @@ if response != 'False':
   RekognitionStartResponse = LambdaStartLabelDetection('inputvideobucket', 'people-detection.mp4', 'arn:aws:sns:us-east-2:256069468632:RekognitionTest01')
   print(RekognitionStartResponse)
   
+  Done = False
   RekognitionNextToken = ""
-  JobStatusCheck = JobSuccessChecker2( RekognitionStartResponse['JobId'], RekognitionNextToken)
-  with open('data.json', 'w', encoding='utf-8') as f:
-    json.dump(JobStatusCheck, f, ensure_ascii=False, indent=4)
-  while JobStatusCheck['NextToken'] != "":
+  count = 1
+  while Done == False: 
+      JobStatusCheck = JobSuccessChecker2(RekognitionStartResponse['JobId'], RekognitionNextToken)
+      with open(str(count) + 'data.json', 'w', encoding='utf-8') as f:
+        json.dump(JobStatusCheck, f, ensure_ascii=False, indent=4)
+        count += 1
+      if 'NextToken' in JobStatusCheck:
+          RekognitionNextToken = JobStatusCheck['NextToken']
+      else:
+          Done = True
+  
+  
+ # RekognitionNextToken = ""
+ # JobStatusCheck = JobSuccessChecker2( RekognitionStartResponse['JobId'], RekognitionNextToken)
+ # with open('data.json', 'w', encoding='utf-8') as f:
+ #   json.dump(JobStatusCheck, f, ensure_ascii=False, indent=4)
+ # count = 1
+ # while JobStatusCheck['NextToken'] != "":
       
-    JobStatusCheck = JobSuccessChecker2( RekognitionStartResponse['JobId'], JobStatusCheck['NextToken'])
-    count = 1
-    with open(count + 'data.json', 'w', encoding='utf-8') as f:
-     json.dump(JobStatusCheck, f, ensure_ascii=False, indent=4)
-     count += 1
-    continue
+ #   JobStatusCheck = JobSuccessChecker2( RekognitionStartResponse['JobId'], JobStatusCheck['NextToken'])
+ 
+ #   with open(str(count) + 'data.json', 'w', encoding='utf-8') as f:
+ #    json.dump(JobStatusCheck, f, ensure_ascii=False, indent=4)
+ #    count += 1
+ #   continue
   
 else:
   print('Failed to locate input key in S3 ... ')
