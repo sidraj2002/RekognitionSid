@@ -9,10 +9,8 @@ s3 = boto3.client('s3')
 s3inputbucket = 'inputvideobucket'
 sourcefile = 'test.mp4'
 sourceoutputfile = 'source.mp4'
-timestamp = 0
-framerate = 15
-labelidentifier = 'Human'
-labelconfidence = 95
+labelidentifier = 'Person'
+labelconfidence = 80
 jsonsource = 'data.json'
 
 def S3Exist(InputVideoBucket, InputVideoKey):
@@ -34,13 +32,15 @@ def CvFrameProcessor(SourceVideoFile, FrameTimeStamp, FrameRate, OutputFrameName
     cv2.imwrite(OutputFrameName, frame)
 
 def RekognitionOutputParser (JsonInput, ConfidenceScore, LabelIdentifier):
+    NewLabelData = []
     with open(jsonsource) as f:
         data = json.load(f)
     VideoMetadata = data['VideoMetadata']
     for LabelData in data['Labels']:
         if (LabelData['Label']['Name'] == LabelIdentifier) and (LabelData['Label']['Confidence'] > ConfidenceScore):
-            print(LabelData)
-    return LabelData, VideoMetadata 
+            NewLabelData.append(LabelData)
+    #print(NewLabelData)
+    return NewLabelData, VideoMetadata 
 
 response = S3Exist(s3inputbucket, sourcefile)
 if response != 'False':
@@ -49,12 +49,17 @@ if response != 'False':
         s3.download_file(s3inputbucket, sourcefile, sourceoutputfile) #Download Video From S3
     #Get specific LabelData which is data of interest basd on constraints provided 
         LabelData = RekognitionOutputParser(jsonsource, labelconfidence, labelidentifier)
-        
-        timestamp = LabelData[0]['Timestamp']
+    #Set critical variables to run video frame extracter   
         framerate = LabelData[1]['FrameRate']
-        outputframename = ( str(timestamp) + ".jpeg")
+        #timestamp = LabelData[0]['Timestamp']
         
-        CvFrameProcessor(sourceoutputfile, timestamp, framerate, outputframename) #Run Frame extracter on locally downloaded file
+        for frame in LabelData[0]:
+            outputframename = ( str(frame["Timestamp"]) + ".jpeg")
+            CvFrameProcessor(sourceoutputfile, frame["Timestamp"], framerate, outputframename) 
+            print (frame["Timestamp"])
+            
+    #Run Frame Processor using OpenCV to pull the specific Frames based on Label criteria    
+            #CvFrameProcessor(sourceoutputfile, timestamp, framerate, outputframename) 
         
   except OSError:
         print('File already exists ... Removing exisitng file \n')

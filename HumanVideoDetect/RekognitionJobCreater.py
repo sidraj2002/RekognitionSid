@@ -17,7 +17,7 @@ def LambdaStartLabelDetection(InputVideoBucket, InputVideoKey, SNSTopicArn):
             'Name': InputVideoKey
         }
     },
-    MinConfidence=91,
+    MinConfidence=80,
     NotificationChannel={
         'SNSTopicArn': SNSTopicArn,
         'RoleArn': 'arn:aws:iam::256069468632:role/RekognitionServiceRole'
