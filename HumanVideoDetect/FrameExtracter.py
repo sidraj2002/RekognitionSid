@@ -7,9 +7,9 @@ from botocore.exceptions import ClientError
 
 s3 = boto3.client('s3')
 s3inputbucket = 'inputvideobucket'
-sourcefile = 'test.mp4'
+sourcefile = 'people-detection.mp4'
 sourceoutputfile = 'source.mp4'
-labelidentifier = 'Person'
+labelidentifier = 'Human'
 labelconfidence = 80
 jsonsource = 'data.json'
 
@@ -47,12 +47,14 @@ if response != 'False':
   print('Key exists, continue ...\n')
   try:
         s3.download_file(s3inputbucket, sourcefile, sourceoutputfile) #Download Video From S3
-        os.mkdir("OutputFrames")
+        if not os.path.exists('OutputFrames'):
+            os.makedirs('OutputFrames')
+     
     #Get specific LabelData which is data of interest basd on constraints provided 
         LabelData = RekognitionOutputParser(jsonsource, labelconfidence, labelidentifier)
     #Set critical variables to run video frame extracter   
         framerate = LabelData[1]['FrameRate']
-        #timestamp = LabelData[0]['Timestamp']
+        print(LabelData[1]['FrameRate'])
         
         for frame in LabelData[0]:
             outputframename = ( "OutputFrames/" + str(frame["Timestamp"]) + ".jpeg")

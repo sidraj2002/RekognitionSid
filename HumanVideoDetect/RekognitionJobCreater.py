@@ -22,11 +22,12 @@ def LambdaStartLabelDetection(InputVideoBucket, InputVideoKey, SNSTopicArn):
         'SNSTopicArn': SNSTopicArn,
         'RoleArn': 'arn:aws:iam::256069468632:role/RekognitionServiceRole'
     },
-    JobTag='TestJob01')
+    #JobTag='TestJob01')
+    )
     return response
     
     
-def JobSuccessChecker2(RekognitionJobID):
+def JobSuccessChecker2(RekognitionJobID, RekognitionNextToken):
     client = boto3.client('rekognition')
     JobSucess = False
     while not JobSucess :
@@ -52,16 +53,25 @@ def S3Exist(InputVideoBucket, InputVideoKey):
         return ('False')
 
 
-response = S3Exist('inputvideobucket', 'test.mp4')
+response = S3Exist('inputvideobucket', 'people-detection.mp4')
 if response != 'False':
   print('Key exists, continue ...')
   
-  RekognitionStartResponse = LambdaStartLabelDetection('inputvideobucket', 'test.mp4', 'arn:aws:sns:us-east-2:256069468632:RekognitionTest01')
+  RekognitionStartResponse = LambdaStartLabelDetection('inputvideobucket', 'people-detection.mp4', 'arn:aws:sns:us-east-2:256069468632:RekognitionTest01')
   print(RekognitionStartResponse)
   
-  JobStatusCheck = JobSuccessChecker2( RekognitionStartResponse['JobId'])
+  RekognitionNextToken = ""
+  JobStatusCheck = JobSuccessChecker2( RekognitionStartResponse['JobId'], RekognitionNextToken)
   with open('data.json', 'w', encoding='utf-8') as f:
     json.dump(JobStatusCheck, f, ensure_ascii=False, indent=4)
+  while JobStatusCheck['NextToken'] != "":
+      
+    JobStatusCheck = JobSuccessChecker2( RekognitionStartResponse['JobId'], JobStatusCheck['NextToken'])
+    count = 1
+    with open(count + 'data.json', 'w', encoding='utf-8') as f:
+     json.dump(JobStatusCheck, f, ensure_ascii=False, indent=4)
+     count += 1
+    continue
   
 else:
   print('Failed to locate input key in S3 ... ')
