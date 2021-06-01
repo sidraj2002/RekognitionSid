@@ -47,6 +47,7 @@ if response != 'False':
   print('Key exists, continue ...\n')
   try:
         s3.download_file(s3inputbucket, sourcefile, sourceoutputfile) #Download Video From S3
+        os.mkdir("OutputFrames")
     #Get specific LabelData which is data of interest basd on constraints provided 
         LabelData = RekognitionOutputParser(jsonsource, labelconfidence, labelidentifier)
     #Set critical variables to run video frame extracter   
@@ -54,7 +55,7 @@ if response != 'False':
         #timestamp = LabelData[0]['Timestamp']
         
         for frame in LabelData[0]:
-            outputframename = ( str(frame["Timestamp"]) + ".jpeg")
+            outputframename = ( "OutputFrames/" + str(frame["Timestamp"]) + ".jpeg")
             CvFrameProcessor(sourceoutputfile, frame["Timestamp"], framerate, outputframename) 
             print (frame["Timestamp"])
             
