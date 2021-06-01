@@ -17,7 +17,7 @@ def LambdaStartLabelDetection(InputVideoBucket, InputVideoKey, SNSTopicArn):
             'Name': InputVideoKey
         }
     },
-    MinConfidence=80,
+    MinConfidence=90,
     NotificationChannel={
         'SNSTopicArn': SNSTopicArn,
         'RoleArn': 'arn:aws:iam::256069468632:role/RekognitionServiceRole'
@@ -33,7 +33,7 @@ def JobSuccessChecker2(RekognitionJobID, RekognitionNextToken):
     while not JobSucess :
      response = client.get_label_detection(
       JobId=RekognitionJobID,
-      MaxResults=123
+      MaxResults=10
       )
      print(response['JobStatus'])
      if response['JobStatus'] == "SUCCEEDED":
@@ -42,6 +42,16 @@ def JobSuccessChecker2(RekognitionJobID, RekognitionNextToken):
      else:
         time.sleep(5)
      continue
+ 
+ 
+def JobResultsFetcher(RekognitionJobID, RekognitionNextToken):
+    client = boto3.client('rekognition')
+    response = client.get_label_detection(
+      JobId=RekognitionJobID,
+      MaxResults=50,
+      NextToken=RekognitionNextToken
+      )
+    return response
     
 def S3Exist(InputVideoBucket, InputVideoKey):
     s3 = boto3.client('s3')
@@ -56,15 +66,15 @@ def S3Exist(InputVideoBucket, InputVideoKey):
 response = S3Exist('inputvideobucket', 'people-detection.mp4')
 if response != 'False':
   print('Key exists, continue ...')
-  
+  RekognitionNextToken = ""
   RekognitionStartResponse = LambdaStartLabelDetection('inputvideobucket', 'people-detection.mp4', 'arn:aws:sns:us-east-2:256069468632:RekognitionTest01')
   print(RekognitionStartResponse)
+  JobSuccessChecker2(RekognitionStartResponse['JobId'], RekognitionNextToken)
   
   Done = False
-  RekognitionNextToken = ""
   count = 1
   while Done == False: 
-      JobStatusCheck = JobSuccessChecker2(RekognitionStartResponse['JobId'], RekognitionNextToken)
+      JobStatusCheck = JobResultsFetcher(RekognitionJobID=RekognitionStartResponse['JobId'], RekognitionNextToken=RekognitionNextToken)
       with open(str(count) + 'data.json', 'w', encoding='utf-8') as f:
         json.dump(JobStatusCheck, f, ensure_ascii=False, indent=4)
         count += 1
