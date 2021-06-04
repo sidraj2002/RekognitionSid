@@ -1,7 +1,7 @@
 # RekognitionSid
 Rekognition Utility Example
 
-![alt text](https://github.com/sidraj2002/RekognitionSid/blob/main/blob/main/VideoFrameExtracter.jpg?raw=true)
+![alt text](https://github.com/sidraj2002/RekognitionSid/blob/main/HumanVideoDetect/VideoFrameExtracter.jpg)
 
 install pip
 # Install OpenCV for FrameExtracter
