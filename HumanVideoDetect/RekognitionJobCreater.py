@@ -62,6 +62,21 @@ def S3Exist(InputVideoBucket, InputVideoKey):
         #print('key not found ...')
         return ('False')
 
+# Work on Below to combine below function to work with FrameExtracter and omit JSON file output and reads. 
+def ResultsPaginater(RekognitionJobID, RekognitionNextToken):
+  Done = False
+  count = 1
+  while Done == False: 
+      JobStatusCheck = JobResultsFetcher(RekognitionJobID, RekognitionNextToken)
+      with open(str(count) + 'data.json', 'w', encoding='utf-8') as f:
+        json.dump(JobStatusCheck, f, ensure_ascii=False, indent=4)
+        count += 1
+      if 'NextToken' in JobStatusCheck:
+          RekognitionNextToken = JobStatusCheck['NextToken']
+      else:
+          Done = True
+          return Done
+
 
 response = S3Exist('inputvideobucket', 'people-detection.mp4')
 if response != 'False':
@@ -71,19 +86,10 @@ if response != 'False':
   print(RekognitionStartResponse)
   JobSuccessChecker2(RekognitionStartResponse['JobId'], RekognitionNextToken)
   
-  Done = False
-  count = 1
-  while Done == False: 
-      JobStatusCheck = JobResultsFetcher(RekognitionJobID=RekognitionStartResponse['JobId'], RekognitionNextToken=RekognitionNextToken)
-      with open(str(count) + 'data.json', 'w', encoding='utf-8') as f:
-        json.dump(JobStatusCheck, f, ensure_ascii=False, indent=4)
-        count += 1
-      if 'NextToken' in JobStatusCheck:
-          RekognitionNextToken = JobStatusCheck['NextToken']
-      else:
-          Done = True
-  
-  
+  if ResultsPaginater(RekognitionJobID=RekognitionStartResponse['JobId'], RekognitionNextToken=RekognitionNextToken) == True:
+      print('Rekognition JSON response fetching complete ...')
+  else: 
+      print('failed to fetch Rekognition Job results ... ')
  # RekognitionNextToken = ""
  # JobStatusCheck = JobSuccessChecker2( RekognitionStartResponse['JobId'], RekognitionNextToken)
  # with open('data.json', 'w', encoding='utf-8') as f:
