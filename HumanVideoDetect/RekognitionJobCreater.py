@@ -4,7 +4,7 @@ import json
 import time
 from botocore.exceptions import ClientError
 
-def LambdaStartLabelDetection(InputVideoBucket, InputVideoKey, SNSTopicArn):
+def StartLabelDetection(InputVideoBucket, InputVideoKey, SNSTopicArn):
     client = boto3.client('rekognition')
     s3bucket = InputVideoBucket
     s3key = InputVideoKey
@@ -53,10 +53,10 @@ def JobResultsFetcher(RekognitionJobID, RekognitionNextToken):
       )
     return response
     
-def S3Exist(InputVideoBucket, InputVideoKey):
+def S3Exist(InputBucket, InputKey):
     s3 = boto3.client('s3')
     try:
-        response = s3.head_object(Bucket=InputVideoBucket, Key=InputVideoKey)
+        response = s3.head_object(Bucket=InputBucket, Key=InputKey)
         return response
     except ClientError:
         #print('key not found ...')
@@ -82,7 +82,7 @@ response = S3Exist('inputvideobucket', 'people-detection.mp4')
 if response != 'False':
   print('Key exists, continue ...')
   RekognitionNextToken = ""
-  RekognitionStartResponse = LambdaStartLabelDetection('inputvideobucket', 'people-detection.mp4', 'arn:aws:sns:us-east-2:256069468632:RekognitionTest01')
+  RekognitionStartResponse = StartLabelDetection('inputvideobucket', 'people-detection.mp4', 'arn:aws:sns:us-east-2:256069468632:RekognitionTest01')
   print(RekognitionStartResponse)
   JobSuccessChecker2(RekognitionStartResponse['JobId'], RekognitionNextToken)
   
