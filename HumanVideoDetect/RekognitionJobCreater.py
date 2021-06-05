@@ -30,17 +30,24 @@ def StartLabelDetection(InputVideoBucket, InputVideoKey, SNSTopicArn):
 def JobSuccessChecker2(RekognitionJobID, RekognitionNextToken):
     client = boto3.client('rekognition')
     JobSucess = False
+    count = 0
+        
     while not JobSucess :
      response = client.get_label_detection(
       JobId=RekognitionJobID,
       MaxResults=10
       )
-     print(response['JobStatus'])
+     print('Waiting Job Completion', '.'*(count+1), ' '*(2-count), end='\r')
+     count = (count + 1) % 3
+     time.sleep(0.1)
+     #print(response['JobStatus'])
+     
      if response['JobStatus'] == "SUCCEEDED":
         JobSucess = True
+        print('\nDone      \n')
         return response
      else:
-        time.sleep(5)
+        time.sleep(2)
      continue
  
  
@@ -112,9 +119,9 @@ def GetSqsMessages(SqsUrl, RekognitionJobID):
         WaitTimeSeconds=5,
         ReceiveRequestAttemptId='string'
         )
-        messagejson = json.loads(message['Messages'][0]['Body'])
-        print(messagejson['JobStatus'])
-        #print(message['Messages'][0][])
+        #messagejson = json.loads(message['Messages'][0]['Body'])
+        #print(messagejson['JobStatus'])
+        print(message['Messages'][0]['Body'])
         continue
 
 SQSURL = 'https://sqs.us-east-2.amazonaws.com/256069468632/RekognitionQueue01'
@@ -123,7 +130,7 @@ if response != 'False':
   print('Key exists, continue ...')
   RekognitionNextToken = ""
   RekognitionStartResponse = StartLabelDetection('inputvideobucket', 'people-detection.mp4', 'arn:aws:sns:us-east-2:256069468632:RekognitionTest01')
-  print(RekognitionStartResponse)
+  print('\nStarting JobID: ' + RekognitionStartResponse['JobId'] + '\n')
   JobSuccessChecker2(RekognitionStartResponse['JobId'], RekognitionNextToken)
   
   if RekognitionResultsPublisher(RekognitionJobID=RekognitionStartResponse['JobId'], RekognitionNextToken=RekognitionNextToken, SqsUrl=SQSURL) == True:
