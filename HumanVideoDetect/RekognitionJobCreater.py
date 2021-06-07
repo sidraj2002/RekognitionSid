@@ -2,9 +2,10 @@ import boto3
 import logging
 import json
 import time
+import ast
 from botocore.exceptions import ClientError
 
-def StartLabelDetection(InputVideoBucket, InputVideoKey, SNSTopicArn):
+def StartLabelDetection(InputVideoBucket, InputVideoKey, SNSTopicArn, MinimumConfidence, NotificationRoleArn):
     client = boto3.client('rekognition')
     s3bucket = InputVideoBucket
     s3key = InputVideoKey
@@ -17,10 +18,10 @@ def StartLabelDetection(InputVideoBucket, InputVideoKey, SNSTopicArn):
             'Name': InputVideoKey
         }
     },
-    MinConfidence=90,
+    MinConfidence = MinimumConfidence,
     NotificationChannel={
         'SNSTopicArn': SNSTopicArn,
-        'RoleArn': 'arn:aws:iam::256069468632:role/RekognitionServiceRole'
+        'RoleArn': NotificationRoleArn
     },
     #JobTag='TestJob01')
     )
@@ -92,9 +93,7 @@ def RekognitionResultsPublisher(RekognitionJobID, RekognitionNextToken, SqsUrl):
         )
         
       #print(SendMessage)
-      with open(str(count) + 'data.json', 'w', encoding='utf-8') as f:
-        json.dump(JobStatusCheck, f, ensure_ascii=False, indent=4)
-        count += 1
+     
       if 'NextToken' in JobStatusCheck:
           RekognitionNextToken = JobStatusCheck['NextToken']
       else:
@@ -103,6 +102,7 @@ def RekognitionResultsPublisher(RekognitionJobID, RekognitionNextToken, SqsUrl):
 
 def GetSqsMessages(SqsUrl, RekognitionJobID):
     sqs = boto3.client('sqs')
+    count = 1
     queueAttributes = sqs.get_queue_attributes(
         QueueUrl=SqsUrl,
         AttributeNames=['All']
@@ -119,9 +119,24 @@ def GetSqsMessages(SqsUrl, RekognitionJobID):
         WaitTimeSeconds=5,
         ReceiveRequestAttemptId='string'
         )
-        #messagejson = json.loads(message['Messages'][0]['Body'])
+        
+        #Move this later after processing is done. Left here for testing.
+        sqs.delete_message(
+        QueueUrl=SqsUrl,
+        ReceiptHandle=message['Messages'][0]['ReceiptHandle']
+        )
+        #messagejson = json.loads(message.get(('Messages'),[]))
         #print(messagejson['JobStatus'])
-        print(message['Messages'][0]['Body'])
+
+        if message.get(('Messages'),[]) != '[]':
+            with open(str(count) + 'data.json', 'w', encoding='utf-8') as f:
+             json.dump(message['Messages'][0]['Body'], f, ensure_ascii=False, indent=4)
+            count += 1
+            DictBody = ast.literal_eval(message['Messages'][0]['Body'])
+            print(DictBody['JobStatus'])
+        else:
+            print('Empty Response ... retrying to fetch new message')
+        #print(message.get('Messages'), [])
         continue
 
 SQSURL = 'https://sqs.us-east-2.amazonaws.com/256069468632/RekognitionQueue01'
@@ -129,7 +144,7 @@ response = S3Exist('inputvideobucket', 'people-detection.mp4')
 if response != 'False':
   print('Key exists, continue ...')
   RekognitionNextToken = ""
-  RekognitionStartResponse = StartLabelDetection('inputvideobucket', 'people-detection.mp4', 'arn:aws:sns:us-east-2:256069468632:RekognitionTest01')
+  RekognitionStartResponse = StartLabelDetection('inputvideobucket', 'people-detection.mp4', 'arn:aws:sns:us-east-2:256069468632:RekognitionTest01', 90, 'arn:aws:iam::256069468632:role/RekognitionServiceRole')
   print('\nStarting JobID: ' + RekognitionStartResponse['JobId'] + '\n')
   JobSuccessChecker2(RekognitionStartResponse['JobId'], RekognitionNextToken)
   
