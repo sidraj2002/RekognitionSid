@@ -74,7 +74,7 @@ def S3Exist(InputBucket, InputKey):
 def RekognitionResultsPublisher(RekognitionJobID, RekognitionNextToken, SqsUrl):
   sqs = boto3.client('sqs')
   Done = False
-  count = 1
+  count = 0
   while Done == False: 
       JobStatusCheck = JobResultsFetcher(RekognitionJobID, RekognitionNextToken)
       SendMessage = sqs.send_message(
@@ -91,7 +91,7 @@ def RekognitionResultsPublisher(RekognitionJobID, RekognitionNextToken, SqsUrl):
             }
             }
         )
-        
+      count += 1
       #print(SendMessage)
      
       if 'NextToken' in JobStatusCheck:
@@ -102,7 +102,7 @@ def RekognitionResultsPublisher(RekognitionJobID, RekognitionNextToken, SqsUrl):
 
 def GetSqsMessages(SqsUrl, RekognitionJobID):
     sqs = boto3.client('sqs')
-    count = 1
+    count = 0
     queueAttributes = sqs.get_queue_attributes(
         QueueUrl=SqsUrl,
         AttributeNames=['All']
@@ -112,7 +112,7 @@ def GetSqsMessages(SqsUrl, RekognitionJobID):
         message = sqs.receive_message(
         QueueUrl=SqsUrl,
          MessageAttributeNames=[
-            'JobId'
+            'JobId','Sequence'
             ],
         MaxNumberOfMessages=1,
         VisibilityTimeout=20,
@@ -121,10 +121,11 @@ def GetSqsMessages(SqsUrl, RekognitionJobID):
         )
         
         #Move this later after processing is done. Left here for testing.
-        sqs.delete_message(
+        DeleteMessage = sqs.delete_message(
         QueueUrl=SqsUrl,
         ReceiptHandle=message['Messages'][0]['ReceiptHandle']
         )
+        #print(DeleteMessage)
         #messagejson = json.loads(message.get(('Messages'),[]))
         #print(messagejson['JobStatus'])
 
@@ -133,7 +134,8 @@ def GetSqsMessages(SqsUrl, RekognitionJobID):
              json.dump(message['Messages'][0]['Body'], f, ensure_ascii=False, indent=4)
             count += 1
             DictBody = ast.literal_eval(message['Messages'][0]['Body'])
-            print(DictBody['JobStatus'])
+            #print(DictBody['JobStatus'])
+            print(message['Messages'][0]['MessageAttributes'])
         else:
             print('Empty Response ... retrying to fetch new message')
         #print(message.get('Messages'), [])
