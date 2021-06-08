@@ -134,8 +134,8 @@ def GetSqsMessages(SqsUrl, RekognitionJobID):
              json.dump(message['Messages'][0]['Body'], f, ensure_ascii=False, indent=4)
             count += 1
             DictBody = ast.literal_eval(message['Messages'][0]['Body'])
-            #print(DictBody['JobStatus'])
-            print(message['Messages'][0]['MessageAttributes'])
+            print(DictBody['NextToken'])
+            print(message['Messages'][0]['MessageAttributes']['JobId'])
         else:
             print('Empty Response ... retrying to fetch new message')
         #print(message.get('Messages'), [])
