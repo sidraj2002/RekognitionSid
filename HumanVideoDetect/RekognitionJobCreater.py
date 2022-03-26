@@ -141,12 +141,23 @@ def GetSqsMessages(SqsUrl, RekognitionJobID):
         #print(message.get('Messages'), [])
         continue
 
-SQSURL = 'https://sqs.us-east-2.amazonaws.com/256069468632/RekognitionQueue01'
-response = S3Exist('inputvideobucket', 'people-detection.mp4')
+
+InputVideoKey = 'source.mp4'
+InputVideoBucket = 'inputvideobucket2022'
+RekognitionServiceRoleArn = 'arn:aws:iam::486072134273:role/RekognitonServiceRole'
+SNSTopicArn = 'arn:aws:sns:us-east-2:486072134273:RekognitionVideoTopic'
+SQSURL = 'https://sqs.us-east-2.amazonaws.com/486072134273/RekognitionVideoQueue'
+
+response = S3Exist(InputVideoBucket, InputVideoKey)
+
+sts = boto3.client('sts')
+test = sts.get_caller_identity()
+print(test)
+
 if response != 'False':
   print('Key exists, continue ...')
   RekognitionNextToken = ""
-  RekognitionStartResponse = StartLabelDetection('inputvideobucket', 'people-detection.mp4', 'arn:aws:sns:us-east-2:256069468632:RekognitionTest01', 90, 'arn:aws:iam::256069468632:role/RekognitionServiceRole')
+  RekognitionStartResponse = StartLabelDetection(InputVideoBucket, InputVideoKey, SNSTopicArn, 90, RekognitionServiceRoleArn)
   print('\nStarting JobID: ' + RekognitionStartResponse['JobId'] + '\n')
   JobSuccessChecker2(RekognitionStartResponse['JobId'], RekognitionNextToken)
   

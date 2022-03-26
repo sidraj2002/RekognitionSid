@@ -6,13 +6,14 @@ from botocore.exceptions import ClientError
 s3 = boto3.client('s3')
 
 def s3CreateBuckets(region):
-    InputVideoBucket = s3.create_bucket(Bucket='inputvideobucket',CreateBucketConfiguration={
+    InputVideoBucket = s3.create_bucket(Bucket='inputvideobucket2022',CreateBucketConfiguration={
         'LocationConstraint': region,
     })
-    OutputDataBucket = s3.create_bucket(Bucket='outputdatabucket', CreateBucketConfiguration={
+    OutputDataBucket = s3.create_bucket(Bucket='outputdatabucket2022', CreateBucketConfiguration={
         'LocationConstraint': region,
     })
     response = s3.list_buckets()
+    
 #print('Existing buckets:')
 #for bucket in response['Buckets']:
  #   print(f'  {bucket["Name"]}')
@@ -22,6 +23,6 @@ def s3CreateBuckets(region):
     
 try: 
     newbuckets = s3CreateBuckets('us-east-2')
-except ClientError as ex:
-    print('bucket already exists')
+except ClientError as error:
+    print(error.response)
 print (newbuckets)

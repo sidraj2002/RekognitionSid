@@ -6,7 +6,7 @@ import cv2
 from botocore.exceptions import ClientError
 
 s3 = boto3.client('s3')
-s3inputbucket = 'inputvideobucket'
+s3inputbucket = 'inputvideobucket2022'
 sourcefile = 'people-detection.mp4'
 sourceoutputfile = 'source.mp4'
 labelidentifier = 'Human'
