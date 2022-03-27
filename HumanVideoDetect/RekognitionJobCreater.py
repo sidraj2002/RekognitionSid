@@ -119,7 +119,7 @@ def GetSqsMessages(SqsUrl, RekognitionJobID):
         WaitTimeSeconds=5,
         ReceiveRequestAttemptId='string'
         )
-        
+        #print(message)
         #Move this later after processing is done. Left here for testing.
         DeleteMessage = sqs.delete_message(
         QueueUrl=SqsUrl,
@@ -130,17 +130,18 @@ def GetSqsMessages(SqsUrl, RekognitionJobID):
         #print(messagejson['JobStatus'])
 
         if message.get(('Messages'),[]) != '[]':
-            with open(str(count) + 'data.json', 'w', encoding='utf-8') as f:
-             json.dump(message['Messages'][0]['Body'], f, ensure_ascii=False, indent=4)
-            count += 1
+            #with open(str(count) + 'data.json', 'w', encoding='utf-8') as f:
+              #json.dump(message['Messages'][0]['Body'], f, ensure_ascii=False, indent=4)
+            #count += 1
+            #DictBody = ast.literal_eval(message['Messages'][0]['Body'])
             DictBody = ast.literal_eval(message['Messages'][0]['Body'])
-            print(DictBody['NextToken'])
-            print(message['Messages'][0]['MessageAttributes']['JobId'])
+            print(DictBody)
+            #print(DictBody['NextToken'])
+            #print(message['Messages'][0]['MessageAttributes']['JobId'])
         else:
             print('Empty Response ... retrying to fetch new message')
         #print(message.get('Messages'), [])
         continue
-
 
 InputVideoKey = 'source.mp4'
 InputVideoBucket = 'inputvideobucket2022'
@@ -151,8 +152,8 @@ SQSURL = 'https://sqs.us-east-2.amazonaws.com/486072134273/RekognitionVideoQueue
 response = S3Exist(InputVideoBucket, InputVideoKey)
 
 sts = boto3.client('sts')
-test = sts.get_caller_identity()
-print(test)
+# test = sts.get_caller_identity()
+# print(test)
 
 if response != 'False':
   print('Key exists, continue ...')

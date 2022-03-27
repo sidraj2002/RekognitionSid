@@ -3,15 +3,16 @@ import json
 import logging
 import os
 import cv2
+import ast
 from botocore.exceptions import ClientError
 
 s3 = boto3.client('s3')
 s3inputbucket = 'inputvideobucket2022'
-sourcefile = 'people-detection.mp4'
+sourcefile = 'source.mp4'
 sourceoutputfile = 'source.mp4'
 labelidentifier = 'Human'
 labelconfidence = 80
-jsonsource = 'data.json'
+jsonsource = '0data.json'
 
 def S3Exist(InputVideoBucket, InputVideoKey):
     s3 = boto3.client('s3')
@@ -35,8 +36,13 @@ def RekognitionOutputParser (JsonInput, ConfidenceScore, LabelIdentifier):
     NewLabelData = []
     with open(jsonsource) as f:
         data = json.load(f)
-    VideoMetadata = data['VideoMetadata']
-    for LabelData in data['Labels']:
+        #print(type(data))
+    VideoMetadata = ast.literal_eval(data)
+    #print(type(VideoMetadata))
+    #print(VideoMetadata['VideoMetadata'])
+    #VideoMetadata = data['VideoMetadata']
+    #print(type(VideoMetadata))
+    for LabelData in VideoMetadata['Labels']:
         if (LabelData['Label']['Name'] == LabelIdentifier) and (LabelData['Label']['Confidence'] > ConfidenceScore):
             NewLabelData.append(LabelData)
     #print(NewLabelData)
@@ -52,9 +58,9 @@ if response != 'False':
      
     #Get specific LabelData which is data of interest basd on constraints provided 
         LabelData = RekognitionOutputParser(jsonsource, labelconfidence, labelidentifier)
-    #Set critical variables to run video frame extracter   
-        framerate = LabelData[1]['FrameRate']
-        print(LabelData[1]['FrameRate'])
+    #Set critical variables to run video frame extracter 
+        #print(LabelData[1]['VideoMetadata'])
+        framerate = LabelData[1]['VideoMetadata']['FrameRate']
         
         for frame in LabelData[0]:
             outputframename = ( "OutputFrames/" + str(frame["Timestamp"]) + ".jpeg")
